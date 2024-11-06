@@ -9,10 +9,16 @@ public class Main {
         return -1;
     }
 
-    public static int meanHouseholdEstimateKgPerCapitaPerYear(int[] householdEstimatesKgPerCapitaPerYear)
-    {
-        return -1;
+    public static int meanHouseholdEstimateKgPerCapitaPerYear(int[] householdEstimatesKgPerCapitaPerYear) {
+        int total = 0;
+        int mean =0;
+        for(int i = 0; i<householdEstimatesKgPerCapitaPerYear.length;i++){
+            total += householdEstimatesKgPerCapitaPerYear[i];
+        }
+        mean = total/householdEstimatesKgPerCapitaPerYear.length + 1;
+        return mean;
     }
+
 
     public static int meanHouseholdEstimateTonnesPerYear(int[] householdEstimatesTonnesPerYear)
     {
@@ -160,23 +166,55 @@ public class Main {
      * Misc Methods
      */
 
-    public static String getCountryTotalWastePerYear(String country, String[] countries, int[] totalWasteKgPerCapitaPerYear)
+    public static int getCountryTotalWastePerYear(String country, String[] countries, int[] totalWasteKgPerCapitaPerYear)
     {
-        return "";
+        int i = 0;
+        while(!country.equals(countries[i])){
+            i = i+1;
+        }
+        return totalWasteKgPerCapitaPerYear[i];
     }
 
     public static String getCountryWithMostWastePerCapita(String[] countries, int[] totalWasteKgPerCapitaPerYear)
     {
-        return "";
+        int biggestNumber =0;
+        int countryIndex = 0;
+        for(int i = 0;i < totalWasteKgPerCapitaPerYear.length; i++){
+            if(totalWasteKgPerCapitaPerYear[i] > biggestNumber){
+                biggestNumber = totalWasteKgPerCapitaPerYear[i];
+                countryIndex = i;
+            }
+        }
+        return countries[countryIndex];
+
     }
 
-    public static String[] getCountriesWithHighestPovertyPercentage(String[] countries, double[] percentagesShareInPoverty)
-    {
-        return new String[0];
-    }
+    public static String[] getCountriesWithHighestPovertyPercentage(String[] countries, double[] percentagesShareInPoverty) {
+        double biggestNumber = 0.0;
+        int countryIndex = 0;
+        for (int i = 0; i < percentagesShareInPoverty.length; i++) {
+            if (percentagesShareInPoverty[i] > biggestNumber) {
+                biggestNumber = percentagesShareInPoverty[i];
+                countryIndex = i;
+            }
 
+        }
+        for (int i = 0; i < percentagesShareInPoverty.length; i++) {
+            if (percentagesShareInPoverty[i] == biggestNumber) {
+
+            }
+        }
+    }
     public static String[] getCountriesWithHighConfidence(String[] countries, String[] confidences)
     {
-        return new String[0];
+        StringBuilder bigballs = new StringBuilder();
+        for (int i = 0; i<countries.length;i++){
+            if(confidences[i].equals("High confidence")){
+                bigballs.append(countries[i]).append ("skillissue");
+            }
+        }
+        String [] massiveballs = bigballs.toString().split("skillissue");
+        return massiveballs;
+    }
     }
 }
